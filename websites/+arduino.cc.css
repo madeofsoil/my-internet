@@ -49,7 +49,6 @@
 ._Header-hamburgher_lfa7m_101,
 ._Header-logo_link_lfa7m_43,
 ._Header-menusheet_lfa7m_155,
-/* ._Header-overlay_lfa7m_137, */
 .product-list__item,
 .about-section__top-card,
 .about-section__bottom-card,
@@ -133,14 +132,6 @@ body {
   display: none !important;
 }
 
-/* ino-No Footer */
-#footer,
-._Footer_mv59m_1,
-#shopify-section-arduino-footer,
-footer {
-  display: none !important;
-}
-
 /* ino-Translucent Header */
 .announcement-bar,
 .ino-header,
@@ -150,17 +141,12 @@ footer {
 .app-sub-menu,
 .customSearch_container__pCEX7,
 .header__panel,
-/* .open, */
-/* ._Header-overlay_lfa7m_137[data-show="true"], */
 ._Header-menusheet_lfa7m_155,
-/* .menu-container, */
 .select-btn,
 .dropdown-menu,
-/* nav, */
 ._Header_lfa7m_1,
 ._Header_1iljv_1,
 .header,
-/* #header, */
 .d-header,
 .arduino-nav,
 .ino-anchor-menu,
@@ -208,4 +194,12 @@ footer {
 .ino-collection-anchor-menu-wrap.is-active,
 .ino-anchor-menu.is-active {
   opacity: 1;
+}
+
+/* ino-No Footer */
+#footer,
+._Footer_mv59m_1,
+#shopify-section-arduino-footer,
+footer {
+  display: none !important;
 }
