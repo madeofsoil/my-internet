@@ -1,40 +1,24 @@
 /* yt-Transparency */
-html[dark],
 html,
-#container.ytd-searchbox,
-ytd-app,
-#page-header-container,
-#page-header,
-#tabs-container,
-#tabs-inner-container,
-#chips-wrapper,
-.navigation-container,
-#cinematic-shorts-scrim,
-#shorts-container {
-  background-color: #00000000 !important;
-  background: none !important;
+html[dark],
+#full-bleed-container,
+.html5-video-player {
+  background-color: transparent !important;
 }
-
-#tabs-divider,
-#short-video-container #cinematic-container,
-#frosted-glass {
-  display: none !important;
+:root,
+.ytd-masthead {
+  --yt-spec-base-background: transparent !important;
+  --yt-spec-menu-background: hsla(0, 0%, 100%, 0.08) !important;
+  --yt-spec-brand-background-solid: hsla(0, 0%, 100%, 0.08) !important;
+  --yt-spec-brand-background-primary: transparent !important;
 }
-
-#shorts-container {
-  height: 98vh !important;
-}
-
-tp-yt-app-drawer > #contentContainer,
-#guide-content,
-ytd-mini-guide-renderer,
-ytd-mini-guide-entry-renderer {
-  background-color: #00000000 !important;
-  background: none !important;
+.ytSearchboxComponentInputBox {
+  background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
 /* yt-Toggle side guide $ Completely remove the side guide */
-ytd-mini-guide-renderer {
+ytd-mini-guide-renderer,
+[theater=""] #contentContainer::after {
   display: none !important;
 }
 tp-yt-app-drawer > #contentContainer:not([opened=""]),
@@ -48,7 +32,9 @@ ytd-mini-guide-entry-renderer {
   margin-left: 0 !important;
 }
 
-ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
+ytd-app:not([guide-persistent-and-visible=""])
+  tp-yt-app-drawer
+  > #contentContainer {
   background-color: var(--yt-spec-text-primary-inverse) !important;
 }
 
@@ -58,7 +44,11 @@ ytd-alert-with-button-renderer {
 }
 
 /* yt-clean side guide $ Remove YouTube Studio, Sports, Settings and the gfooter from the guide */
-ytd-guide-section-renderer:has([title="YouTube Studio"], [title="Sport"], [title="Settings"]),
+ytd-guide-section-renderer:has(
+  [title="YouTube Studio"],
+  [title="Sport"],
+  [title="Settings"]
+),
 ytd-guide-renderer #footer {
   display: none !important;
 }
@@ -116,7 +106,9 @@ body:not(:has([mini-guide-visible=""])) {
     justify-items: center;
   }
 
-  ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
+  ytd-app:not([guide-persistent-and-visible=""])
+    tp-yt-app-drawer
+    > #contentContainer {
     background: transparent !important;
   }
 }
@@ -128,18 +120,6 @@ ytd-alert-with-button-renderer {
 
 ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
   width: fit-content !important;
-}
-
-/* yt-Transparent header */
-#masthead-container {
-  #background.ytd-masthead {
-    background-color: #00000000 !important;
-  }
-}
-
-.ytSearchboxComponentSearchButton {
-  background-color: var(--yt-spec-text-primary-inverse) !important;
-  color: var(--yt-live-chat-text-input-field-placeholder-color) !important;
 }
 
 /* yt-no voice search */
@@ -156,11 +136,31 @@ ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
   display: none !important;
 }
 
+/* yt-early New To You chip */
+#chips {
+  display: flex !important;
+}
+
+#chips > yt-chip-cloud-chip-renderer:nth-last-child(1) {
+  order: 1 !important;
+  margin-right: 12px !important;
+}
+
+#chips > yt-chip-cloud-chip-renderer:not(:nth-last-child(1)) {
+  order: 2 !important;
+}
+
+#chips > yt-chip-cloud-chip-renderer:nth-child(1) {
+  order: 1 !important;
+}
+
 /* yt-Compact feed $ Reduce spacing, Show menu button on hover, inline details */
 ytd-rich-item-renderer {
   margin-bottom: 15px !important;
   [rendered-from-rich-grid] {
-    --ytd-rich-item-row-usable-width: calc(100% - var(--ytd-rich-grid-gutter-margin) * 1) !important;
+    --ytd-rich-item-row-usable-width: calc(
+      100% - var(--ytd-rich-grid-gutter-margin) * 1
+    ) !important;
   }
 
   #metadata.ytd-video-meta-block {
@@ -223,27 +223,6 @@ ytd-merch-shelf-renderer,
   display: none !important;
 }
 
-/* yt-Transparent video background */
-.html5-main-video,
-.html5-video-container,
-#movie_player,
-#container,
-#ytd-player,
-#player-container,
-#player-full-bleed-container,
-#full-bleed-container {
-  background-color: #00000000 !important;
-  background: transparent !important;
-}
-
-#cinematics {
-  display: none !important;
-}
-
-.ytp-gradient-bottom {
-  display: none !important;
-}
-
 /* yt-no ambient mode */
 #cinematics-container {
   display: none !important;
@@ -261,7 +240,8 @@ ytd-merch-shelf-renderer,
   transition: all 0.3s ease-in-out 0.5s !important;
 }
 
-body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) #masthead-container:not(:has(.ytSearchboxComponentInputBoxHasFocus)) {
+body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""]))
+  #masthead-container:not(:has(.ytSearchboxComponentInputBoxHasFocus)) {
   top: -40px !important;
   opacity: 0 !important;
   transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
@@ -271,7 +251,9 @@ body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) #m
   }
 }
 
-ytd-app:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) {
+ytd-app:has([fullscreen=""], [theater=""]):not(
+    :has(ytd-watch-flexy[hidden=""])
+  ) {
   --ytd-toolbar-height: 0px !important;
 
   #page-manager {
@@ -293,16 +275,17 @@ ytd-comments {
   position: fixed !important;
   z-index: 1000 !important;
   top: 3vh !important;
-  right: -35em !important;
+  right: -42em !important;
   width: 40em !important;
   height: 90vh !important;
+  max-height: calc(100vh - 175px) !important;
   overflow-y: scroll !important;
   opacity: 0 !important;
 
   background-color: var(--yt-live-chat-shimmer-background-color) !important;
   backdrop-filter: blur(20px) !important;
 
-  padding: 0 3em !important;
+  padding: 0 2em !important;
   border-radius: 2em 0 0 2em !important;
 
   &:hover {
@@ -314,7 +297,7 @@ ytd-comments {
 /* yt-zen view comments on left */
 [theater=""] ytd-comments {
   border-radius: 0 2em 2em 0 !important;
-  left: -35em !important;
+  left: -40em !important;
   &:hover {
     left: 0 !important;
   }
@@ -392,27 +375,9 @@ ytd-rich-item-renderer[is-in-first-column=""] {
 }
 
 #contents {
-  padding-left: calc(var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)) !important;
-}
-
-/* yt-fix overlapping header */
-body {
-  overflow: hidden !important;
-}
-#masthead-container {
-  position: relative !important;
-}
-#page-manager {
-  margin-top: 0 !important;
-}
-.ytd-page-manager {
-  overflow-x: hidden !important;
-  overflow-y: scroll !important;
-  height: calc(100vh - 56px) !important;
-}
-.ytSearchboxComponentInputBox {
-  background-color: rgba(255, 255, 255, 0.1) !important;
-  border: unset !important;
+  padding-left: calc(
+    var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)
+  ) !important;
 }
 
 /* yt-Immersive search $ Smooth blur and zoom effect for searhbar */
@@ -551,4 +516,92 @@ yt-searchbox:has(.ytSearchboxComponentInputBoxHasFocus) {
       opacity: 0.3 !important;
     }
   }
+}
+
+/* yt-YT TV $ YouTube TV player modifications */
+.ytLrWatchDefaultControlsBackground,
+ytlr-watch-metadata,
+.ytVirtualListItem:not(.ytVirtualListItemSelected) ytlr-comment-renderer,
+.ytLrChannelHeaderRendererMetadata,
+ytlr-surface-page::before {
+  background-color: #fff7 !important;
+  backdrop-filter: blur(15px) !important;
+
+  @media (prefers-color-scheme: dark) {
+    background-color: #0007 !important;
+  }
+}
+
+.ytLrWatchDefaultControlsBackground {
+  width: 80rem !important;
+  transform: translateX(-50%) !important;
+  left: 50% !important;
+  border-radius: 1em 1em 0 0 !important;
+}
+
+.ytLrAnimatedOverlayContainer,
+ytlr-compact-link-renderer {
+  background-color: transparent !important;
+  font-size: 0.7em !important;
+}
+
+/* yt-Fix Overlapping Header */
+body {
+  overflow-y: hidden !important;
+}
+#masthead-container {
+  position: relative !important;
+}
+#page-manager {
+  margin-top: 0 !important;
+}
+.ytd-page-manager {
+  overflow-y: scroll !important;
+  height: calc(100dvh - 56px) !important;
+}
+ytd-page-manager:not(ytd-browse #contents) .ytd-page-manager {
+  overflow-y: scroll !important;
+  height: calc(100dvh - 56px) !important;
+}
+#chips-wrapper {
+  position: relative !important;
+  top: 0 !important;
+}
+
+/* yt-Immersive Popup */
+tp-yt-app-drawer #header {
+  opacity: 0 !important;
+}
+.tp-yt-app-drawer.visible,
+tp-yt-iron-overlay-backdrop {
+  background-color: transparent !important;
+}
+.ytSearchboxComponentSuggestionsContainer,
+.yt-contextual-sheet-layout-wiz,
+.ytp-settings-menu {
+  background-color: hsla(0, 0%, 100%, 0.08) !important;
+}
+tp-yt-app-drawer #contentContainer:not([persistent=""]) {
+  background-color: hsla(0, 0%, 100%, 0.08) !important;
+}
+body:has(
+    tp-yt-iron-dropdown:not([aria-hidden="true"]),
+    tp-yt-iron-dropdown[aria-disabled="true"],
+    .ytSearchboxComponentInputBoxHasFocus,
+    tp-yt-paper-dialog[aria-hidden="false"],
+    .tp-yt-app-drawer.visible,
+    tp-yt-paper-dialog:not([aria-hidden]) > yt-report-form-modal-renderer
+  )
+  #page-manager {
+  filter: blur(20px) !important;
+  pointer-events: none !important;
+  transition: filter 0.2s ease-in-out !important;
+}
+body:has(ytd-voice-search-dialog-renderer #microphone[state]) #content {
+  filter: blur(20px) !important;
+  pointer-events: none !important;
+  transition: filter 0.2s ease-in-out !important;
+}
+.ytp-settings-menu {
+  backdrop-filter: blur(20px) !important;
 }
