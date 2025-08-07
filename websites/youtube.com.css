@@ -32,9 +32,7 @@ ytd-mini-guide-entry-renderer {
   margin-left: 0 !important;
 }
 
-ytd-app:not([guide-persistent-and-visible=""])
-  tp-yt-app-drawer
-  > #contentContainer {
+ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
   background-color: var(--yt-spec-text-primary-inverse) !important;
 }
 
@@ -44,11 +42,7 @@ ytd-alert-with-button-renderer {
 }
 
 /* yt-clean side guide $ Remove YouTube Studio, Sports, Settings and the gfooter from the guide */
-ytd-guide-section-renderer:has(
-  [title="YouTube Studio"],
-  [title="Sport"],
-  [title="Settings"]
-),
+ytd-guide-section-renderer:has([title="YouTube Studio"], [title="Sport"], [title="Settings"]),
 ytd-guide-renderer #footer {
   display: none !important;
 }
@@ -106,9 +100,7 @@ body:not(:has([mini-guide-visible=""])) {
     justify-items: center;
   }
 
-  ytd-app:not([guide-persistent-and-visible=""])
-    tp-yt-app-drawer
-    > #contentContainer {
+  ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
     background: transparent !important;
   }
 }
@@ -158,9 +150,7 @@ ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
 ytd-rich-item-renderer {
   margin-bottom: 15px !important;
   [rendered-from-rich-grid] {
-    --ytd-rich-item-row-usable-width: calc(
-      100% - var(--ytd-rich-grid-gutter-margin) * 1
-    ) !important;
+    --ytd-rich-item-row-usable-width: calc(100% - var(--ytd-rich-grid-gutter-margin) * 1) !important;
   }
 
   #metadata.ytd-video-meta-block {
@@ -240,8 +230,7 @@ ytd-merch-shelf-renderer,
   transition: all 0.3s ease-in-out 0.5s !important;
 }
 
-body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""]))
-  #masthead-container:not(:has(.ytSearchboxComponentInputBoxHasFocus)) {
+body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) #masthead-container:not(:has(.ytSearchboxComponentInputBoxHasFocus)) {
   top: -40px !important;
   opacity: 0 !important;
   transition: all 0.3s cubic-bezier(0.445, 0.05, 0.55, 0.95) !important;
@@ -251,9 +240,7 @@ body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""]))
   }
 }
 
-ytd-app:has([fullscreen=""], [theater=""]):not(
-    :has(ytd-watch-flexy[hidden=""])
-  ) {
+ytd-app:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) {
   --ytd-toolbar-height: 0px !important;
 
   #page-manager {
@@ -375,9 +362,7 @@ ytd-rich-item-renderer[is-in-first-column=""] {
 }
 
 #contents {
-  padding-left: calc(
-    var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)
-  ) !important;
+  padding-left: calc(var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)) !important;
 }
 
 /* yt-Immersive search $ Smooth blur and zoom effect for searhbar */
