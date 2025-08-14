@@ -15,6 +15,11 @@ footer,
 dialog {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
+@media (min-width: 40rem) {
+  button[data-open-modal] {
+    background-color: hsla(0, 0%, 100%, 0.08) !important;
+  }
+}
 
 /*qs-Immersive Popup*/
 :root,
@@ -42,18 +47,23 @@ body:has(.nav-items.shown) {
 }
 
 /*qs-Fix Overlapping Header*/
-body {
+.docslayout {
   overflow-y: hidden !important;
 }
 .header {
   position: relative !important;
 }
 .docslayout-root {
-  margin-top: 0 !important;
-}
-.docslayout-inner {
-  height: calc(100dvh - 3.5rem) !important;
+  height: calc(100svh - 3.5rem) !important;
   overflow-y: auto !important;
+  margin-top: 0 !important;
+  margin-inline: unset !important;
+  padding-inline: 0.618rem !important;
+}
+@media (min-width: 85rem) {
+  .nav-wrapper {
+    max-height: unset !important;
+  }
 }
 
 /*qs-No Footer*/
