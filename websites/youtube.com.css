@@ -2,21 +2,110 @@
 html,
 html[dark],
 #full-bleed-container,
-.html5-video-player {
+.html5-video-player,
+ytd-engagement-panel-section-list-renderer[dialog] #content.ytd-engagement-panel-section-list-renderer {
   background-color: transparent !important;
 }
+
 :root,
-.ytd-masthead {
+ytd-masthead {
   --yt-spec-base-background: transparent !important;
+  --yt-spec-menu-background: transparent !important;
+  --yt-spec-brand-background-solid: transparent !important;
+  --yt-spec-brand-background-primary: transparent !important;
+  --yt-spec-raised-background: transparent !important;
   --yt-spec-menu-background: hsla(0, 0%, 100%, 0.08) !important;
   --yt-spec-brand-background-solid: hsla(0, 0%, 100%, 0.08) !important;
-  --yt-spec-brand-background-primary: transparent !important;
 }
+
 .ytSearchboxComponentInputBox {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
-/* yt-Toggle side guide $ Completely remove the side guide */
+/* yt-Fix Overlapping Header */
+body {
+  overflow-y: hidden !important;
+}
+
+#masthead-container {
+  position: relative !important;
+}
+
+x.ytd-page-manager {
+  overflow-y: scroll !important;
+  height: calc(100dvh - 56px) !important;
+}
+
+ytd-page-manager:not(ytd-browse #contents) {
+  .ytd-page-manager {
+    overflow-y: scroll !important;
+    height: calc(100dvh - 56px) !important;
+  }
+}
+
+aytd-app:has([fullscreen]) {
+  #masthead {
+    position: fixed !important;
+  }
+
+  .ytd-page-manager {
+    height: 100dvh !important;
+  }
+}
+
+#page-manager {
+  margin-top: 0 !important;
+}
+
+#chips-wrapper {
+  position: relative !important;
+  top: 0 !important;
+}
+
+/* yt-Immersive Popup */
+tp-yt-app-drawer #header {
+  /*! opacity: 0 !important; */
+}
+
+.tp-yt-app-drawer.visible,
+tp-yt-iron-overlay-backdrop {
+  background-color: transparent !important;
+}
+
+.ytSearchboxComponentSuggestionsContainer,
+.yt-contextual-sheet-layout-wiz,
+.ytp-settings-menu {
+  background-color: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+tp-yt-app-drawer #contentContainer:not([persistent=""]) {
+  background-color: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+body:has(
+    tp-yt-iron-dropdown:not([aria-hidden="true"]),
+    tp-yt-iron-dropdown[aria-disabled="true"],
+    .ytSearchboxComponentInputBoxHasFocus,
+    a.tp-yt-app-drawer.visible,
+    tp-yt-paper-dialog:not([aria-hidden]) > yt-report-form-modal-renderer
+  )
+  #page-manager {
+  filter: blur(20px) !important;
+  pointer-events: none !important;
+  transition: filter 0.2s ease-in-out !important;
+}
+
+body:has(ytd-voice-search-dialog-renderer #microphone[state], tp-yt-paper-dialog:not([aria-hidden])) #content {
+  filter: blur(20px) !important;
+  pointer-events: none !important;
+  transition: filter 0.2s ease-in-out !important;
+}
+
+.ytp-settings-menu {
+  backdrop-filter: blur(20px) !important;
+}
+
+/* yt-No side guide $ Completely remove the side guide */
 ytd-mini-guide-renderer,
 [theater=""] #contentContainer::after {
   display: none !important;
@@ -52,56 +141,85 @@ ytd-guide-collapsible-section-entry-renderer {
   border: none !important;
 }
 
+ytd-mini-guide-entry-renderer .title {
+  display: none !important;
+}
+
+.ytd-mini-guide-entry-renderer {
+  width: 100% !important;
+}
+
+ytd-mini-guide-renderer {
+  width: calc(var(--ytd-mini-guide-width) - 4px) !important;
+  padding: 12px !important;
+  margin-right: 4px !important;
+}
+
+#items.ytd-mini-guide-renderer {
+  margin-top: 0 !important;
+}
+
+a.ytd-mini-guide-entry-renderer {
+  padding: 10px 0 !important;
+}
+
+.guide-icon.ytd-mini-guide-entry-renderer {
+  margin-bottom: 0 !important;
+}
+
 /* yt-mini guide $ A minimal guide with an icon only sidebar similar to the tablet view but more entries */
-body:not(:has([mini-guide-visible=""])) {
-  #endpoint.ytd-guide-entry-renderer yt-formatted-string,
-  h3.ytd-guide-section-renderer,
-  #newness-dot,
-  tp-yt-paper-item:not(:hover) yt-icon.guide-entry-badge {
-    display: none !important;
-  }
+ytd-app {
+  --app-drawer-width: var(--ytd-mini-guide-width) !important;
+  --ytd-persistent-guide-width: var(--ytd-mini-guide-width) !important;
+}
 
-  #endpoint.ytd-guide-entry-renderer,
-  ytd-guide-entry-renderer,
-  ytd-guide-collapsible-section-entry-renderer,
-  .ytd-guide-section-renderer,
-  ytd-guide-section-renderer,
-  ytd-guide-renderer > #sections,
-  ytd-guide-renderer,
-  #guide-inner-content,
-  #guide-content,
-  #guide-wrapper,
-  tp-yt-app-drawer,
-  #tabsContent,
-  yt-tab-group-shape,
-  yt-tab-group-shape > [role="tablist"] {
-    width: fit-content !important;
-  }
+tp-yt-app-drawer {
+  width: var(--app-drawer-width) !important;
+}
 
-  tp-yt-paper-item {
-    padding: 2px 10px !important;
-  }
+ytd-guide-renderer,
+ytd-guide-entry-renderer {
+  width: fit-content !important;
+}
 
-  yt-icon.ytd-guide-entry-renderer,
-  yt-img-shadow.ytd-guide-entry-renderer {
-    margin: 0 !important;
-  }
+#endpoint.ytd-guide-entry-renderer yt-formatted-string,
+h3.ytd-guide-section-renderer,
+#newness-dot,
+tp-yt-paper-item:not(:hover) yt-icon.guide-entry-badge,
+tp-yt-app-drawer ytd-topbar-logo-renderer {
+  display: none !important;
+}
 
-  tp-yt-paper-tabs {
-    margin: auto 0 !important;
-  }
+tp-yt-app-drawer ytd-topbar-logo-renderer {
+  display: none !important;
+}
+
+tp-yt-paper-item {
+  padding: 2px 10px !important;
+}
+
+yt-icon.ytd-guide-entry-renderer,
+yt-img-shadow.ytd-guide-entry-renderer {
+  margin: 0 !important;
+}
+
+tp-yt-paper-tabs {
+  margin: auto 0 !important;
+}
+
+tp-yt-app-drawer #contentContainer:not([persistent=""]) {
+  background: transparent !important;
+}
+
+#tabsContainer.tp-yt-paper-tabs {
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+#content:has(tp-yt-app-drawer[opened]) {
   #page-manager {
-    margin-left: 80px !important;
-  }
-
-  #tabsContainer.tp-yt-paper-tabs {
-    display: flex;
-    justify-content: center;
-    justify-items: center;
-  }
-
-  ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
-    background: transparent !important;
+    margin-left: var(--app-drawer-width) !important;
   }
 }
 
@@ -120,11 +238,8 @@ ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
 }
 
 /* yt-Hide filter chips $ Hide the chips at the top of the feed homepage if unused */
-#chips-wrapper {
-  top: 0 !important;
-}
-
-[page-subtype="home"] .ytd-two-column-browse-results-renderer #header {
+ytd-feed-filter-chip-bar-renderer,
+yt-related-chip-cloud-renderer {
   display: none !important;
 }
 
@@ -210,6 +325,28 @@ ytd-app:has(#video-preview-container:hover) #content {
 
 ytd-merch-shelf-renderer,
 .annotation {
+  display: none !important;
+}
+
+/* yt-Transparent video background */
+.html5-main-video,
+.html5-video-container,
+#movie_player,
+#container,
+#ytd-player,
+#player-container,
+#player-full-bleed-container,
+#full-bleed-container,
+ytlr-player {
+  background-color: #00000000 !important;
+  background: transparent !important;
+}
+
+#cinematics {
+  display: none !important;
+}
+
+.ytp-gradient-bottom {
   display: none !important;
 }
 
@@ -361,16 +498,7 @@ ytd-rich-item-renderer[is-in-first-column=""] {
   margin-left: calc(var(--ytd-rich-grid-item-margin) / 2) !important;
 }
 
-#contents {
-  padding-left: calc(var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)) !important;
-}
-
 /* yt-Immersive search $ Smooth blur and zoom effect for searhbar */
-#page-manager,
-yt-searchbox {
-  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.35) !important;
-}
-
 #masthead yt-searchbox button[aria-label="Search"] {
   display: none !important;
 }
@@ -392,23 +520,8 @@ yt-searchbox:has(.ytSearchboxComponentInputBoxHasFocus) {
     height: 60px !important;
     max-width: 700px !important;
     scale: 1.1 !important;
-  }
 
-  .ytSearchboxComponentInputBox,
-  #i0 {
-    background-color: #fffb !important;
-
-    @media (prefers-color-scheme: dark) {
-      background-color: #000b !important;
-    }
-
-    box-shadow: black 0 0 30px !important;
-  }
-
-  #i0 {
-    margin-top: 10px !important;
-
-    @media only screen and (min-width: 1400px) {
+    .ytSearchboxComponentSuggestionsContainer {
       margin-top: 30px !important;
     }
   }
@@ -421,11 +534,6 @@ yt-searchbox:has(.ytSearchboxComponentInputBoxHasFocus) {
   top: 0 !important;
   position: fixed !important;
   justify-content: center !important;
-}
-
-#content:has(.ytSearchboxComponentInputBoxHasFocus) #page-manager {
-  filter: blur(20px) !important;
-  scale: 1.05 !important;
 }
 
 /* yt-Addon : Viewstats */
@@ -528,65 +636,4 @@ ytlr-surface-page::before {
 ytlr-compact-link-renderer {
   background-color: transparent !important;
   font-size: 0.7em !important;
-}
-
-/* yt-Fix Overlapping Header */
-body {
-  overflow-y: hidden !important;
-}
-#masthead-container {
-  position: relative !important;
-}
-#page-manager {
-  margin-top: 0 !important;
-}
-.ytd-page-manager {
-  overflow-y: scroll !important;
-  height: calc(100dvh - 56px) !important;
-}
-ytd-page-manager:not(ytd-browse #contents) .ytd-page-manager {
-  overflow-y: scroll !important;
-  height: calc(100dvh - 56px) !important;
-}
-#chips-wrapper {
-  position: relative !important;
-  top: 0 !important;
-}
-
-/* yt-Immersive Popup */
-tp-yt-app-drawer #header {
-  opacity: 0 !important;
-}
-.tp-yt-app-drawer.visible,
-tp-yt-iron-overlay-backdrop {
-  background-color: transparent !important;
-}
-.ytSearchboxComponentSuggestionsContainer,
-.yt-contextual-sheet-layout-wiz,
-.ytp-settings-menu {
-  background-color: hsla(0, 0%, 100%, 0.08) !important;
-}
-tp-yt-app-drawer #contentContainer:not([persistent=""]) {
-  background-color: hsla(0, 0%, 100%, 0.08) !important;
-}
-body:has(
-    tp-yt-iron-dropdown:not([aria-hidden="true"]),
-    tp-yt-iron-dropdown[aria-disabled="true"],
-    .ytSearchboxComponentInputBoxHasFocus,
-    tp-yt-paper-dialog[aria-hidden="false"],
-    .tp-yt-app-drawer.visible,
-    tp-yt-paper-dialog:not([aria-hidden]) > yt-report-form-modal-renderer
-  )
-  #page-manager {
-  filter: blur(20px) !important;
-  pointer-events: none !important;
-  transition: filter 0.2s ease-in-out !important;
-}
-body:has(ytd-voice-search-dialog-renderer #microphone[state]) #content {
-  filter: blur(20px) !important;
-  pointer-events: none !important;
-  transition: filter 0.2s ease-in-out !important;
-}
-.ytp-settings-menu {
-  backdrop-filter: blur(20px) !important;
 }
