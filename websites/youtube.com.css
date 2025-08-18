@@ -3,6 +3,7 @@ html,
 html[dark],
 #full-bleed-container,
 .html5-video-player,
+yt-report-form-modal-renderer,
 ytd-engagement-panel-section-list-renderer[dialog] #content.ytd-engagement-panel-section-list-renderer {
   background-color: transparent !important;
 }
@@ -63,42 +64,30 @@ aytd-app:has([fullscreen]) {
 }
 
 /* yt-Immersive Popup */
-tp-yt-app-drawer #header {
-  /*! opacity: 0 !important; */
-}
-
-.tp-yt-app-drawer.visible,
+#guide.visible,
 tp-yt-iron-overlay-backdrop {
   background-color: transparent !important;
 }
 
+#guide > #contentContainer:not([persistent]),
 .ytSearchboxComponentSuggestionsContainer,
 .yt-contextual-sheet-layout-wiz,
 .ytp-settings-menu {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
-tp-yt-app-drawer #contentContainer:not([persistent=""]) {
-  background-color: hsla(0, 0%, 100%, 0.08) !important;
-}
-
-body:has(
-    tp-yt-iron-dropdown:not([aria-hidden="true"]),
-    tp-yt-iron-dropdown[aria-disabled="true"],
-    .ytSearchboxComponentInputBoxHasFocus,
-    a.tp-yt-app-drawer.visible,
-    tp-yt-paper-dialog:not([aria-hidden]) > yt-report-form-modal-renderer
-  )
-  #page-manager {
+body:has(tp-yt-iron-dropdown:not([aria-hidden="true"]), tp-yt-iron-dropdown[aria-disabled="true"], .ytSearchboxComponentInputBoxHasFocus, a#guide[opened]) #page-manager {
   filter: blur(20px) !important;
   pointer-events: none !important;
-  transition: filter 0.2s ease-in-out !important;
 }
 
-body:has(ytd-voice-search-dialog-renderer #microphone[state], tp-yt-paper-dialog:not([aria-hidden])) #content {
-  filter: blur(20px) !important;
-  pointer-events: none !important;
-  transition: filter 0.2s ease-in-out !important;
+body:has(ytd-voice-search-dialog-renderer #microphone[state], tp-yt-paper-dialog:not([aria-hidden])) {
+  #masthead-container,
+  #page-manager,
+  #guide > #contentContainer {
+    filter: blur(20px) !important;
+    pointer-events: none !important;
+  }
 }
 
 .ytp-settings-menu {
@@ -110,19 +99,11 @@ ytd-mini-guide-renderer,
 [theater=""] #contentContainer::after {
   display: none !important;
 }
-tp-yt-app-drawer > #contentContainer:not([opened=""]),
-#contentContainer:not([opened=""]) #guide-content,
-ytd-mini-guide-renderer,
-ytd-mini-guide-entry-renderer {
-  background-color: var(--yt-spec-text-primary-inverse) !important;
-  background: var(--yt-spec-text-primary-inverse) !important;
-}
-#content:not(:has(#contentContainer[opened=""])) #page-manager {
-  margin-left: 0 !important;
-}
 
-ytd-app:not([guide-persistent-and-visible=""]) tp-yt-app-drawer > #contentContainer {
-  background-color: var(--yt-spec-text-primary-inverse) !important;
+#content:not(:has(#contentContainer[opened=""])) {
+  #page-manager {
+    margin-left: 0 !important;
+  }
 }
 
 ytd-alert-with-button-renderer {
@@ -159,10 +140,6 @@ ytd-mini-guide-renderer {
   margin-top: 0 !important;
 }
 
-a.ytd-mini-guide-entry-renderer {
-  padding: 10px 0 !important;
-}
-
 .guide-icon.ytd-mini-guide-entry-renderer {
   margin-bottom: 0 !important;
 }
@@ -186,11 +163,7 @@ ytd-guide-entry-renderer {
 h3.ytd-guide-section-renderer,
 #newness-dot,
 tp-yt-paper-item:not(:hover) yt-icon.guide-entry-badge,
-tp-yt-app-drawer ytd-topbar-logo-renderer {
-  display: none !important;
-}
-
-tp-yt-app-drawer ytd-topbar-logo-renderer {
+tp-yt-app-drawer #header {
   display: none !important;
 }
 
@@ -207,8 +180,13 @@ tp-yt-paper-tabs {
   margin: auto 0 !important;
 }
 
-tp-yt-app-drawer #contentContainer:not([persistent=""]) {
-  background: transparent !important;
+#guide:not([persistent]) {
+  top: var(--ytd-masthead-height) !important;
+
+  #contentContainer {
+    background: transparent !important;
+    padding-top: 0 !important;
+  }
 }
 
 #tabsContainer.tp-yt-paper-tabs {
@@ -241,6 +219,10 @@ ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
 ytd-feed-filter-chip-bar-renderer,
 yt-related-chip-cloud-renderer {
   display: none !important;
+}
+
+ytd-watch-next-secondary-results-renderer #contents > yt-lockup-view-model:first-child {
+  margin-top: 0 !important;
 }
 
 /* yt-early New To You chip */
@@ -636,4 +618,12 @@ ytlr-surface-page::before {
 ytlr-compact-link-renderer {
   background-color: transparent !important;
   font-size: 0.7em !important;
+}
+
+/*yt-Animations*/
+#masthead-container,
+#page-manager,
+#guide > #contentContainer {
+  transition-property: filter, margin, transform !important;
+  transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
 }
