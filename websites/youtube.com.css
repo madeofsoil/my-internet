@@ -9,7 +9,8 @@ ytd-engagement-panel-section-list-renderer[dialog] #content.ytd-engagement-panel
 }
 
 :root,
-ytd-masthead {
+ytd-masthead,
+ytd-playlist-panel-video-renderer[use-color-palette] {
   --yt-spec-base-background: transparent !important;
   --yt-spec-menu-background: transparent !important;
   --yt-spec-brand-background-solid: transparent !important;
@@ -18,10 +19,16 @@ ytd-masthead {
   --yt-frosted-glass-desktop: transparent !important;
   --yt-spec-menu-background: hsla(0, 0%, 100%, 0.08) !important;
   --yt-spec-brand-background-solid: hsla(0, 0%, 100%, 0.08) !important;
+  --yt-active-playlist-panel-background-color: transparent !important;
 }
 
-.ytSearchboxComponentInputBox {
+.ytSearchboxComponentInputBox,
+.ytContextualSheetLayoutHost {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+ytd-playlist-panel-video-renderer[selected][use-color-palette] {
+  --yt-active-playlist-panel-background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
 /* yt-Fix Overlapping Header */
@@ -62,7 +69,7 @@ tp-yt-iron-overlay-backdrop {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
-body:has(tp-yt-iron-dropdown:not([aria-hidden="true"]), tp-yt-iron-dropdown[aria-disabled="true"], .ytSearchboxComponentInputBoxHasFocus, a#guide[opened]) #page-manager {
+body:has(tp-yt-iron-dropdown:not([aria-hidden="true"]), tp-yt-iron-dropdown[aria-disabled="true"], .ytSearchboxComponentInputBoxHasFocus) #page-manager {
   filter: blur(20px) !important;
   pointer-events: none !important;
 }
@@ -200,13 +207,6 @@ ytd-alert-with-button-renderer {
 
 ytd-two-column-browse-results-renderer[page-subtype="playlist"] {
   width: fit-content !important;
-}
-
-/* yt-Transparent header */ /*
-#masthead-container {
-  #background.ytd-masthead {
-    background-color: #00000000 !important;
-  }
 }
 
 /* yt-no voice search */
