@@ -10,7 +10,7 @@ ytd-engagement-panel-section-list-renderer[dialog] #content.ytd-engagement-panel
 
 :root,
 ytd-masthead,
-ytd-playlist-panel-video-renderer[use-color-palette] {
+[use-color-palette] {
   --yt-spec-base-background: transparent !important;
   --yt-spec-menu-background: transparent !important;
   --yt-spec-brand-background-solid: transparent !important;
@@ -20,6 +20,7 @@ ytd-playlist-panel-video-renderer[use-color-palette] {
   --yt-spec-menu-background: hsla(0, 0%, 100%, 0.08) !important;
   --yt-spec-brand-background-solid: hsla(0, 0%, 100%, 0.08) !important;
   --yt-active-playlist-panel-background-color: transparent !important;
+  --yt-spec-text-primary-inverse: transparent !important;
 }
 
 .ytSearchboxComponentInputBox,
@@ -309,26 +310,21 @@ ytd-merch-shelf-renderer,
 }
 
 /* yt-theater: zen view $ Make the theater view video fit the full window size */
-[theater=""] #full-bleed-container {
-  height: 100vh !important;
-  max-height: 100vh !important;
-  top: 0 !important;
-}
-
-body:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) #masthead-container:not(:has(.ytSearchboxComponentInputBoxHasFocus)) {
-  top: -40px !important;
-  opacity: 0 !important;
-  &:hover {
-    opacity: 1 !important;
-    top: 0 !important;
+ytd-app:has(.ytd-page-manager[theater]) {
+  #masthead-container {
+    position: fixed !important;
+    top: -40px !important;
+    opacity: 0 !important;
+    &:hover {
+      opacity: 1 !important;
+      top: 0 !important;
+    }
   }
-}
 
-ytd-app:has([fullscreen=""], [theater=""]):not(:has(ytd-watch-flexy[hidden=""])) {
-  --ytd-toolbar-height: 0px !important;
-
-  #page-manager {
-    margin: 0 !important;
+  .ytd-page-manager,
+  #full-bleed-container {
+    height: 100dvh !important;
+    max-height: 100dvh !important;
   }
 }
 
@@ -579,8 +575,6 @@ ytlr-compact-link-renderer {
 /*yt-Animations*/
 ytd-mini-guide-renderer[hidden] {
   display: inline-block !important;
-  aopacity: 0 !important;
-  aleft: -100% !important;
   transform: translate3d(-100%, 0, 0) !important;
   pointer-events: none !important;
 }
@@ -592,7 +586,17 @@ ytd-mini-guide-renderer[hidden] {
 #guide > #contentContainer,
 #masthead-container,
 #page-manager,
-ytd-mini-guide-renderer {
-  transition-property: filter, margin, transform !important;
+ytd-mini-guide-renderer,
+ytd-menu-renderer #button,
+#inline-preview-player,
+#video-preview-container,
+ytd-app #content,
+#columns #secondary,
+ytd-comments,
+yt-searchbox,
+.__youtube-timestamps__stamp,
+div.clickable-comment,
+div.replies {
+  transition-property: filter, margin, transform, opacity, scale !important;
   transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
 }
