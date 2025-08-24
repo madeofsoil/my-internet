@@ -12,7 +12,8 @@ body,
 .set-bookmarklet,
 .set-reset,
 .badge-link,
-.frm__input {
+.frm__input,
+.nKc6YUBojXXvgstPGALT::after {
   background-color: transparent !important;
 }
 
@@ -28,6 +29,9 @@ body,
   --theme-col-bg-expandcollapse: transparent !important;
   --theme-col-bg-button-secondary: transparent !important;
   --sds-color-background-container-01: transparent !important;
+  --theme-assist-bg-chat-system: transparent !important;
+  --sds-color-text-on-color: transparent !important;
+  --sds-color-background-utility: transparent !important;
 }
 
 /* ddg-Transparent Header */
@@ -44,6 +48,8 @@ body {
 :root {
   --theme-col-bg-page-alt-2: transparent !important;
   --theme-sidemenu-bg: transparent !important;
+  --sds-color-background-backdrop: transparent !important;
+  --sds-color-background-02: transparent !important;
 }
 
 .modal__box,
@@ -67,7 +73,7 @@ body {
       pointer-events: none !important;
     }
   }
-  &:has(.nav-menu--slideout.is-open, header.header_header__w2BOs > [data-testid="sidemenu"]) {
+  &:has(.nav-menu--slideout.is-open, header.header_header__w2BOs > [data-testid="sidemenu"], div > div[data-type="modal-overlay"]) {
     #header_wrapper,
     #content_wrapper,
     #web_content_wrapper,
@@ -101,7 +107,7 @@ body {
 
 article[data-testid="result"]:has(.OHr0VX9IuNcv6iakvT6A.IBL7rESCoklmJ_3nDLDz) {
   > div:not(.OHr0VX9IuNcv6iakvT6A.IBL7rESCoklmJ_3nDLDz),
-  .OHr0VX9IuNcv6iakvT6A.IBL7rESCoklmJ_3nDLDz > button {
+  > .OHr0VX9IuNcv6iakvT6A.IBL7rESCoklmJ_3nDLDz > button {
     filter: blur(20px) !important;
     pointer-events: none !important;
   }
@@ -124,6 +130,10 @@ article[data-testid="result"]:has(.OHr0VX9IuNcv6iakvT6A.IBL7rESCoklmJ_3nDLDz) {
   --theme-col-bg-button-secondary: hsla(0, 0%, 100%, 0.08) !important;
   --theme-col-bg-page-alt-2: hsla(0, 0%, 100%, 0.08) !important;
   --sds-color-background-container-01: hsla(0, 0%, 100%, 0.08) !important;
+  --theme-assist-bg-chat-system: hsla(0, 0%, 100%, 0.08) !important;
+  --sds-color-text-on-color: hsla(0, 0%, 100%, 0.08) !important;
+  --sds-color-background-utility: hsla(0, 0%, 100%, 0.08) !important;
+  --sds-color-background-02: hsla(0, 0%, 100%, 0.08) !important;
 }
 
 .related-searches__item,
@@ -181,6 +191,11 @@ nav > ul::before {
   display: none !important;
 }
 
+/* ddg-No Share Feedback */ /*
+.TccjmKV6RraCaCw5L9gd {
+  display: none !important;
+}
+  
 /* ddg-No Footer */
 .footer {
   display: none !important;
