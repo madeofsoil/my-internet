@@ -21,6 +21,7 @@ ytd-masthead,
   --yt-spec-brand-background-solid: hsla(0, 0%, 100%, 0.08) !important;
   --yt-active-playlist-panel-background-color: transparent !important;
   --yt-spec-text-primary-inverse: transparent !important;
+  --yt-spec-static-black: transparent !important;
 }
 
 .skeleton-bg-color,
@@ -59,7 +60,8 @@ ytd-app:not([fullscreen]) {
 }
 
 /* yt-Immersive Popup */
-#guide.visible,
+#guide,
+#scrim,
 tp-yt-iron-overlay-backdrop {
   background-color: transparent !important;
 }
@@ -71,22 +73,35 @@ tp-yt-iron-overlay-backdrop {
   background-color: hsla(0, 0%, 100%, 0.08) !important;
 }
 
-body:has(tp-yt-iron-dropdown:not([aria-hidden="true"]), tp-yt-iron-dropdown[aria-disabled="true"], .ytSearchboxComponentInputBoxHasFocus) #page-manager {
-  filter: blur(20px) !important;
-  pointer-events: none !important;
-}
-
-body:has(ytd-voice-search-dialog-renderer #microphone[state], tp-yt-paper-dialog:not([aria-hidden])) {
-  #masthead-container,
-  #page-manager,
-  #guide > #contentContainer {
-    filter: blur(20px) !important;
-    pointer-events: none !important;
-  }
+#guide-content > #header {
+  opacity: 0 !important;
 }
 
 .ytp-settings-menu {
   backdrop-filter: blur(20px) !important;
+}
+
+ytd-app {
+  &:has(#guide[opened]:not([persistent]), tp-yt-iron-dropdown:not([aria-hidden="true"]), tp-yt-iron-dropdown[aria-disabled="true"], #masthead yt-searchbox > .ytSearchboxComponentInputBoxHasFocus)
+    #page-manager {
+    filter: blur(20px) !important;
+    pointer-events: none !important;
+  }
+
+  &:has(ytd-voice-search-dialog-renderer #microphone[state], tp-yt-paper-dialog:not([aria-hidden])) {
+    #masthead-container,
+    #page-manager,
+    #guide > #contentContainer {
+      filter: blur(20px) !important;
+      pointer-events: none !important;
+    }
+  }
+
+  &:has(ytd-network-status-banner[current-state="OFFLINE"]) {
+    .ytd-page-manager {
+      height: calc(100dvh - 56px - 26px) !important;
+    }
+  }
 }
 
 /* yt-clean side guide $ Remove YouTube Studio, Sports, Settings and the gfooter from the guide */
@@ -182,7 +197,7 @@ tp-yt-paper-tabs {
 }
 
 #guide:not([persistent]) {
-  top: var(--ytd-masthead-height) !important;
+  top: var(--ytd-toolbar-height) !important;
 
   #contentContainer {
     background: transparent !important;
@@ -196,9 +211,24 @@ tp-yt-paper-tabs {
   justify-items: center;
 }
 
-#content:has(#guide[opened]) {
+ytd-app:has(#guide[opened]) {
   #page-manager {
     margin-left: var(--app-drawer-width) !important;
+  }
+
+  &:not(
+    :has(
+      tp-yt-iron-dropdown:not([aria-hidden="true"]),
+      tp-yt-iron-dropdown[aria-disabled="true"],
+      #masthead yt-searchbox > .ytSearchboxComponentInputBoxHasFocus,
+      ytd-voice-search-dialog-renderer #microphone[state],
+      tp-yt-paper-dialog:not([aria-hidden])
+    )
+  ) {
+    #page-manager {
+      filter: none !important;
+      pointer-events: auto !important;
+    }
   }
 }
 
@@ -311,7 +341,7 @@ ytd-merch-shelf-renderer,
 }
 
 /* yt-theater: zen view $ Make the theater view video fit the full window size */
-ytd-app:has(.ytd-page-manager[theater]:not([hidden])) {
+#content:has(.ytd-page-manager[theater]:not([hidden])) {
   #masthead-container {
     position: fixed !important;
     top: -40px !important;
@@ -406,6 +436,16 @@ ytd-two-column-browse-results-renderer:has(.ytd-playlist-video-renderer) {
   display: none !important;
 }
 
+ytd-mini-guide-renderer[hidden] {
+  display: inline-block !important;
+  transform: translate3d(-100%, 0, 0) !important;
+  pointer-events: none !important;
+}
+
+#guide[persistent] #header {
+  display: none !important;
+}
+
 /* yt-better captions $ Caption background has blur */
 .caption-window {
   backdrop-filter: blur(10px) !important;
@@ -444,33 +484,36 @@ ytd-ghost-grid-renderer {
   border-radius: 2em !important;
 }
 
-yt-searchbox:has(.ytSearchboxComponentInputBoxHasFocus) {
-  position: relative !important;
-  left: 0vw !important;
-  top: -30vh !important;
+#masthead:has(yt-searchbox > .ytSearchboxComponentInputBoxHasFocus) {
+  > #container > #center {
+    height: 100dvh !important;
+    width: 100dvw !important;
+    left: 0 !important;
+    top: 0 !important;
+  }
 
-  height: 40px !important;
-  max-width: 600px !important;
-  scale: 1 !important;
-
-  @media only screen and (min-width: 1400px) {
-    height: 60px !important;
-    max-width: 700px !important;
+  yt-searchbox {
+    position: relative !important;
+    left: 0 !important;
+    height: 40px !important;
+    top: 0 !important;
+    max-width: 60dvw !important;
     scale: 1.1 !important;
+    margin-top: 30vh !important;
 
-    .ytSearchboxComponentSuggestionsContainer {
-      margin-top: 30px !important;
+    @media only screen and (max-width: 656px) {
+      margin-left: 0 !important;
+    }
+
+    @media only screen and (min-width: 1400px) {
+      height: 60px !important;
+      max-width: 50dvw !important;
+
+      .ytSearchboxComponentSuggestionsContainer {
+        margin-top: 30px !important;
+      }
     }
   }
-}
-
-.ytd-masthead #center:has(.ytSearchboxComponentInputBoxHasFocus) {
-  height: 100vh !important;
-  width: 100vw !important;
-  left: 0 !important;
-  top: 0 !important;
-  position: fixed !important;
-  justify-content: center !important;
 }
 
 /* yt-Addon : Viewstats */
@@ -574,19 +617,13 @@ ytlr-compact-link-renderer {
 }
 
 /*yt-Animations*/
-ytd-mini-guide-renderer[hidden] {
-  display: inline-block !important;
-  transform: translate3d(-100%, 0, 0) !important;
-  pointer-events: none !important;
-}
-
-#guide[persistent] #header {
-  display: none !important;
-}
-
+#content > #guide,
 #guide > #contentContainer,
 #masthead-container,
 #page-manager,
+#masthead-container yt-searchbox,
+#masthead-container yt-searchbox > .ytSearchboxComponentInputBox,
+#masthead #center,
 ytd-mini-guide-renderer,
 ytd-menu-renderer #button,
 #inline-preview-player,
@@ -594,10 +631,8 @@ ytd-menu-renderer #button,
 ytd-app #content,
 #columns #secondary,
 ytd-comments,
-yt-searchbox,
 .__youtube-timestamps__stamp,
 div.clickable-comment,
 div.replies {
-  transition-property: filter, margin, transform, opacity, scale !important;
-  transition: 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
+  transition: all 0.6s cubic-bezier(0.85, 0, 0.15, 1) !important;
 }
