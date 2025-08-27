@@ -475,6 +475,14 @@ ytd-ghost-grid-renderer {
   }
 }
 
+ytd-rich-item-renderer[rendered-from-rich-grid][is-in-first-column] {
+  margin-left: calc(var(--ytd-rich-grid-item-margin) / 2) !important;
+}
+
+#primary > ytd-rich-grid-renderer > #contents {
+  margin-left: calc(var(--ytd-rich-grid-item-margin) / 2 + var(--ytd-rich-grid-gutter-margin)) !important;
+}
+
 /* yt-Immersive search $ Smooth blur and zoom effect for searhbar */
 #masthead yt-searchbox button[aria-label="Search"] {
   display: none !important;
