@@ -1,0 +1,55 @@
+/* at-Transparency */
+body,
+.qr-container,
+#background_bg {
+  background-color: transparent !important;
+}
+
+:root, .arattai-dark-mode.theme4, .am-nitemode, * {
+  --am-bg-color-main: transparent !important;
+  --bg-color-1: transparent !important; 
+  --am-bg-color-1: transparent !important;
+  --am-bg-color-2: transparent !important;
+  --am-bg-color-3: transparent !important;
+  --am-bg-chatwindow: transparent !important;
+  --am-overlay-bg: transparent !important;
+  --am-bdr-chatwindow: transparent !important;
+  --chatwindow-bg-color: transparent !important;
+  --chatwindow-hdr-bg-color: transparent !important;
+  --am-container-bg: transparent !important;
+  --am-media-list-bg: transparent !important;
+  --am-color-hover1: hsla(0, 0%, 100%, 0.08) !important;
+  --am-color-theme-selected-bg: hsla(0, 0%, 100%, 0.08) !important;
+  --am-color-theme-hover-bg: hsla(0, 0%, 100%, 0.08) !important;
+  --chatwindow-composer-bg: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+/* at-Immersive Popup */
+:root, .am-overlay {
+  --am-dialog-bg: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+.login-container, 
+.signin_container,
+#signin_flow,
+.textbox,
+.selectbox_options_container, .selectbox_options {
+  background: hsla(0, 0%, 100%, 0.08) !important;
+}
+
+body:has(> div[jsid="country_code_select"]){
+  #nextbtn {
+    filter: blur(20px) !important;
+  }
+}
+
+body:has(> #app > div > #app > div > .amc-recipients-container) {
+  #officechat, #lhs-rail {
+    filter: blur(20px) !important;
+  }
+}
+
+/* at-No Footer */
+#footer {
+  display: none !important;
+}
