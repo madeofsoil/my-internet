@@ -9,12 +9,11 @@ body,
   background-color: transparent !important;
 }
 
-:root,
-.arattai-dark-mode.theme4,
-.am-nitemode,
-* {
+:root .arattai-classic [data-classic="arattai-classic"],
+.am-nitemode {
   --am-bg-color-main: transparent !important;
   --bg-color-1: transparent !important;
+  --bg-color-3: transparent !important;
   --am-bg-color-1: transparent !important;
   --am-bg-color-2: transparent !important;
   --am-bg-color-3: transparent !important;
@@ -32,14 +31,13 @@ body,
   --am-btn-secondary-bg: transparent !important;
   --other-msg-bg: #2b2b2b66 !important;
   --self-msg-bg: #0b394d66 !important;
+  --am-image-viewer-bg: transparent !important;
+  --overlay-bg-dark: transparent !important;
 }
 
 /* at-Glass Effect */
-:root,
-.arattai-dark-mode.theme4,
-.am-nitemode,
-.am-overlay,
-* {
+:root .arattai-classic [data-classic="arattai-classic"],
+.am-nitemode {
   --am-dialog-bg: hsla(0, 0%, 100%, 0.08) !important;
   --am-color-hover1: hsla(0, 0%, 100%, 0.08) !important;
   --am-color-theme-selected-bg: hsla(0, 0%, 100%, 0.08) !important;
@@ -47,6 +45,7 @@ body,
   --chatwindow-composer-bg: hsla(0, 0%, 100%, 0.08) !important;
   --am-color-mode: hsla(0, 0%, 100%, 0.08) !important;
   --am-menu-color: hsla(0, 0%, 100%, 0.08) !important;
+  --lhs-icon-bg-hover: hsla(0, 0%, 100%, 0.08) !important;
 }
 
 .login-container,
@@ -66,10 +65,22 @@ body {
     }
   }
 
-  &:has(> #app > div > #app > div > .amc-recipients-container, > #app > div > #app > div > div[data-vue-dialogcomponent], > #app > div > #app > div > .art-dialog-wrapper) {
+  &:has(
+    > #imgviewer[style="display: block;"],
+    > #app > div > #app > div > .amc-recipients-container,
+    > #app > div > #app > div > div[data-vue-dialogcomponent],
+    > #app > div > #app > div > .art-dialog-wrapper
+  ) {
     #officechat,
     #lhs-rail,
     #lhsOverlay {
+      filter: blur(20px) !important;
+    }
+  }
+
+  &:has(> #app > div > #app > div > .amc-image-viewer) {
+    #lhs-rail,
+    > #app > div > #app > div > .am-wrapper {
       filter: blur(20px) !important;
     }
   }
@@ -115,9 +126,17 @@ body {
   overflow-y: auto !important;
 }
 
-body:has(#lhsOverlay > #overlay_secondary) {
-  #officechat {
-    display: none !important;
+body {
+  &:has(#lhsOverlay > #overlay_secondary) {
+    #officechat {
+      display: none !important;
+    }
+  }
+
+  &:has(#lhs_globalsearch) {
+    #art-chats {
+      display: none !important;
+    }
   }
 }
 
