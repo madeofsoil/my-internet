@@ -67,9 +67,11 @@ body:not(:has([role="dialog"] [role="main"])) {
 
 /* fb-Immersive Popup */
 body:has(
-  [role="dialog"]:not([aria-label="Photo viewer"]),  /*:not([hidden] [role="dialog"]),*/
-  [role="menu"],
-  [role="none"][tabindex]
+  [aria-label="Account controls and settings"] [role="button"][aria-expanded="true"],
+  [aria-haspopup="menu"][aria-expanded="true"],
+  [role="complementary"] [role="button"][aria-expanded="true"],
+  [role="none"][tabindex="-1"],
+  > div.__fb-dark-mode:not(:empty)
 ) {
   #globalContainer,
   #scrollview,
@@ -87,6 +89,7 @@ span[aria-hidden="true"] {
 }
 
 /* fb-No Footer */
-._95ke {
+._95ke,
+footer {
   display: none !important;
 }
